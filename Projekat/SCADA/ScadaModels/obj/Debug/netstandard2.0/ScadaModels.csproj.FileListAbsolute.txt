@@ -1,0 +1,8 @@
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\ScadaModels\bin\Debug\netstandard2.0\ScadaModels.deps.json
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\ScadaModels\bin\Debug\netstandard2.0\ScadaModels.dll
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\ScadaModels\bin\Debug\netstandard2.0\ScadaModels.pdb
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\ScadaModels\obj\Debug\netstandard2.0\ScadaModels.csproj.CoreCompileInputs.cache
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\ScadaModels\obj\Debug\netstandard2.0\ScadaModels.AssemblyInfoInputs.cache
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\ScadaModels\obj\Debug\netstandard2.0\ScadaModels.AssemblyInfo.cs
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\ScadaModels\obj\Debug\netstandard2.0\ScadaModels.dll
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\ScadaModels\obj\Debug\netstandard2.0\ScadaModels.pdb

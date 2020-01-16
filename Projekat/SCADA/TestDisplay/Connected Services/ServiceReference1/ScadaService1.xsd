@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:60577/ScadaService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ScadaModels" />
+  <xs:complexType name="ArrayOfKeyValueOfTagAttributeanyTypetMeCp4FZ">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfTagAttributeanyTypetMeCp4FZ">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ScadaModels" name="Key" type="q1:TagAttribute" />
+            <xs:element name="Value" nillable="true" type="xs:anyType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfTagAttributeanyTypetMeCp4FZ" nillable="true" type="tns:ArrayOfKeyValueOfTagAttributeanyTypetMeCp4FZ" />
+  <xs:complexType name="ArrayOfKeyValueOfstringTagM0guNtgv">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfstringTagM0guNtgv">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" nillable="true" type="xs:string" />
+            <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ScadaModels" name="Value" nillable="true" type="q2:Tag" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfstringTagM0guNtgv" nillable="true" type="tns:ArrayOfKeyValueOfstringTagM0guNtgv" />
+  <xs:complexType name="ArrayOfKeyValueOfstringSimulationUnitM0guNtgv">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfstringSimulationUnitM0guNtgv">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" nillable="true" type="xs:string" />
+            <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ScadaModels" name="Value" type="q3:SimulationUnit" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValueOfstringSimulationUnitM0guNtgv" nillable="true" type="tns:ArrayOfKeyValueOfstringSimulationUnitM0guNtgv" />
+</xs:schema>

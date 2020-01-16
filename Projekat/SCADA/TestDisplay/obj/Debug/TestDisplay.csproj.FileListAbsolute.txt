@@ -1,0 +1,7 @@
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\TestDisplay\bin\Debug\TestDisplay.exe.config
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\TestDisplay\bin\Debug\TestDisplay.exe
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\TestDisplay\bin\Debug\TestDisplay.pdb
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\TestDisplay\obj\Debug\TestDisplay.csprojAssemblyReference.cache
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\TestDisplay\obj\Debug\TestDisplay.csproj.CoreCompileInputs.cache
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\TestDisplay\obj\Debug\TestDisplay.exe
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\TestDisplay\obj\Debug\TestDisplay.pdb

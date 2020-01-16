@@ -1,0 +1,7 @@
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\RealTimeUnit\bin\Debug\RealTimeUnit.exe.config
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\RealTimeUnit\bin\Debug\RealTimeUnit.exe
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\RealTimeUnit\bin\Debug\RealTimeUnit.pdb
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\RealTimeUnit\obj\Debug\RealTimeUnit.csprojAssemblyReference.cache
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\RealTimeUnit\obj\Debug\RealTimeUnit.csproj.CoreCompileInputs.cache
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\RealTimeUnit\obj\Debug\RealTimeUnit.exe
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\RealTimeUnit\obj\Debug\RealTimeUnit.pdb

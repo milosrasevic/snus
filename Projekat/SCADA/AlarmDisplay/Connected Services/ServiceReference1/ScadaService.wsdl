@@ -1,0 +1,846 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ScadaService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IAlarmer_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <sp:SymmetricBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:ProtectionToken>
+              <wsp:Policy>
+                <sp:SecureConversationToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+                  <wsp:Policy>
+                    <sp:RequireDerivedKeys />
+                    <sp:BootstrapPolicy>
+                      <wsp:Policy>
+                        <sp:SignedParts>
+                          <sp:Body />
+                          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+                          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+                          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+                          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+                          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+                        </sp:SignedParts>
+                        <sp:EncryptedParts>
+                          <sp:Body />
+                        </sp:EncryptedParts>
+                        <sp:SymmetricBinding>
+                          <wsp:Policy>
+                            <sp:ProtectionToken>
+                              <wsp:Policy>
+                                <sp:SpnegoContextToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+                                  <wsp:Policy>
+                                    <sp:RequireDerivedKeys />
+                                  </wsp:Policy>
+                                </sp:SpnegoContextToken>
+                              </wsp:Policy>
+                            </sp:ProtectionToken>
+                            <sp:AlgorithmSuite>
+                              <wsp:Policy>
+                                <sp:Basic256 />
+                              </wsp:Policy>
+                            </sp:AlgorithmSuite>
+                            <sp:Layout>
+                              <wsp:Policy>
+                                <sp:Strict />
+                              </wsp:Policy>
+                            </sp:Layout>
+                            <sp:IncludeTimestamp />
+                            <sp:EncryptSignature />
+                            <sp:OnlySignEntireHeadersAndBody />
+                          </wsp:Policy>
+                        </sp:SymmetricBinding>
+                        <sp:Wss11>
+                          <wsp:Policy />
+                        </sp:Wss11>
+                        <sp:Trust10>
+                          <wsp:Policy>
+                            <sp:MustSupportIssuedTokens />
+                            <sp:RequireClientEntropy />
+                            <sp:RequireServerEntropy />
+                          </wsp:Policy>
+                        </sp:Trust10>
+                      </wsp:Policy>
+                    </sp:BootstrapPolicy>
+                  </wsp:Policy>
+                </sp:SecureConversationToken>
+              </wsp:Policy>
+            </sp:ProtectionToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp />
+            <sp:EncryptSignature />
+            <sp:OnlySignEntireHeadersAndBody />
+          </wsp:Policy>
+        </sp:SymmetricBinding>
+        <sp:Wss11 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy />
+        </sp:Wss11>
+        <sp:Trust10 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:MustSupportIssuedTokens />
+            <sp:RequireClientEntropy />
+            <sp:RequireServerEntropy />
+          </wsp:Policy>
+        </sp:Trust10>
+        <cdp:CompositeDuplex xmlns:cdp="http://schemas.microsoft.com/net/2006/06/duplex" />
+        <ow:OneWay xmlns:ow="http://schemas.microsoft.com/ws/2005/05/routing/policy" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IAlarmer_AlarmerInit_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IAlarmer_AlarmerInit_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IAlarmer_OnAlarm_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_ITrendingSubscriber_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <sp:SymmetricBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:ProtectionToken>
+              <wsp:Policy>
+                <sp:SecureConversationToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+                  <wsp:Policy>
+                    <sp:RequireDerivedKeys />
+                    <sp:BootstrapPolicy>
+                      <wsp:Policy>
+                        <sp:SignedParts>
+                          <sp:Body />
+                          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+                          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+                          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+                          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+                          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+                        </sp:SignedParts>
+                        <sp:EncryptedParts>
+                          <sp:Body />
+                        </sp:EncryptedParts>
+                        <sp:SymmetricBinding>
+                          <wsp:Policy>
+                            <sp:ProtectionToken>
+                              <wsp:Policy>
+                                <sp:SpnegoContextToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+                                  <wsp:Policy>
+                                    <sp:RequireDerivedKeys />
+                                  </wsp:Policy>
+                                </sp:SpnegoContextToken>
+                              </wsp:Policy>
+                            </sp:ProtectionToken>
+                            <sp:AlgorithmSuite>
+                              <wsp:Policy>
+                                <sp:Basic256 />
+                              </wsp:Policy>
+                            </sp:AlgorithmSuite>
+                            <sp:Layout>
+                              <wsp:Policy>
+                                <sp:Strict />
+                              </wsp:Policy>
+                            </sp:Layout>
+                            <sp:IncludeTimestamp />
+                            <sp:EncryptSignature />
+                            <sp:OnlySignEntireHeadersAndBody />
+                          </wsp:Policy>
+                        </sp:SymmetricBinding>
+                        <sp:Wss11>
+                          <wsp:Policy />
+                        </sp:Wss11>
+                        <sp:Trust10>
+                          <wsp:Policy>
+                            <sp:MustSupportIssuedTokens />
+                            <sp:RequireClientEntropy />
+                            <sp:RequireServerEntropy />
+                          </wsp:Policy>
+                        </sp:Trust10>
+                      </wsp:Policy>
+                    </sp:BootstrapPolicy>
+                  </wsp:Policy>
+                </sp:SecureConversationToken>
+              </wsp:Policy>
+            </sp:ProtectionToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp />
+            <sp:EncryptSignature />
+            <sp:OnlySignEntireHeadersAndBody />
+          </wsp:Policy>
+        </sp:SymmetricBinding>
+        <sp:Wss11 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy />
+        </sp:Wss11>
+        <sp:Trust10 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:MustSupportIssuedTokens />
+            <sp:RequireClientEntropy />
+            <sp:RequireServerEntropy />
+          </wsp:Policy>
+        </sp:Trust10>
+        <cdp:CompositeDuplex xmlns:cdp="http://schemas.microsoft.com/net/2006/06/duplex" />
+        <ow:OneWay xmlns:ow="http://schemas.microsoft.com/ws/2005/05/routing/policy" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_ITrendingSubscriber_TrendingSubscriberInit_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_ITrendingSubscriber_TrendingSubscriberInit_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_ITrendingSubscriber_OnScan_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_ITrendingSubscriber_OnTagsDictChanged_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:60577/ScadaService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:60577/ScadaService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:60577/ScadaService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ScadaModels" />
+      <xsd:import schemaLocation="http://localhost:60577/ScadaService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IRealTimeUnit_initialize_InputMessage">
+    <wsdl:part name="parameters" element="tns:initialize" />
+  </wsdl:message>
+  <wsdl:message name="IRealTimeUnit_initialize_OutputMessage">
+    <wsdl:part name="parameters" element="tns:initializeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRealTimeUnit_writeValue_InputMessage">
+    <wsdl:part name="parameters" element="tns:writeValue" />
+  </wsdl:message>
+  <wsdl:message name="IRealTimeUnit_writeValue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:writeValueResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRealTimeUnit_deinitialize_InputMessage">
+    <wsdl:part name="parameters" element="tns:deinitialize" />
+  </wsdl:message>
+  <wsdl:message name="IRealTimeUnit_deinitialize_OutputMessage">
+    <wsdl:part name="parameters" element="tns:deinitializeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDisplay_readDisplayValues_InputMessage">
+    <wsdl:part name="parameters" element="tns:readDisplayValues" />
+  </wsdl:message>
+  <wsdl:message name="IDisplay_readDisplayValues_OutputMessage">
+    <wsdl:part name="parameters" element="tns:readDisplayValuesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDatabaseManager_addNewSimulationDriverUnit_InputMessage">
+    <wsdl:part name="parameters" element="tns:addNewSimulationDriverUnit" />
+  </wsdl:message>
+  <wsdl:message name="IDatabaseManager_addNewSimulationDriverUnit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addNewSimulationDriverUnitResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDatabaseManager_removeSimulationDriverUnit_InputMessage">
+    <wsdl:part name="parameters" element="tns:removeSimulationDriverUnit" />
+  </wsdl:message>
+  <wsdl:message name="IDatabaseManager_removeSimulationDriverUnit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:removeSimulationDriverUnitResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDatabaseManager_addTag_InputMessage">
+    <wsdl:part name="parameters" element="tns:addTag" />
+  </wsdl:message>
+  <wsdl:message name="IDatabaseManager_addTag_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addTagResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDatabaseManager_removeTag_InputMessage">
+    <wsdl:part name="parameters" element="tns:removeTag" />
+  </wsdl:message>
+  <wsdl:message name="IDatabaseManager_removeTag_OutputMessage">
+    <wsdl:part name="parameters" element="tns:removeTagResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDatabaseManager_changeTag_InputMessage">
+    <wsdl:part name="parameters" element="tns:changeTag" />
+  </wsdl:message>
+  <wsdl:message name="IDatabaseManager_changeTag_OutputMessage">
+    <wsdl:part name="parameters" element="tns:changeTagResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDatabaseManager_getTags_InputMessage">
+    <wsdl:part name="parameters" element="tns:getTags" />
+  </wsdl:message>
+  <wsdl:message name="IDatabaseManager_getTags_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getTagsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDatabaseManager_getUnits_InputMessage">
+    <wsdl:part name="parameters" element="tns:getUnits" />
+  </wsdl:message>
+  <wsdl:message name="IDatabaseManager_getUnits_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getUnitsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlarmer_AlarmerInit_InputMessage">
+    <wsdl:part name="parameters" element="tns:AlarmerInit" />
+  </wsdl:message>
+  <wsdl:message name="IAlarmer_AlarmerInit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AlarmerInitResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlarmer_OnAlarm_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnAlarm" />
+  </wsdl:message>
+  <wsdl:message name="ITrendingPublisher_sendOutputSignal_InputMessage">
+    <wsdl:part name="parameters" element="tns:sendOutputSignal" />
+  </wsdl:message>
+  <wsdl:message name="ITrendingPublisher_sendOutputSignal_OutputMessage">
+    <wsdl:part name="parameters" element="tns:sendOutputSignalResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrendingPublisher_sendManualInputSignal_InputMessage">
+    <wsdl:part name="parameters" element="tns:sendManualInputSignal" />
+  </wsdl:message>
+  <wsdl:message name="ITrendingPublisher_sendManualInputSignal_OutputMessage">
+    <wsdl:part name="parameters" element="tns:sendManualInputSignalResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrendingPublisher_getTagsDict_InputMessage">
+    <wsdl:part name="parameters" element="tns:getTagsDict" />
+  </wsdl:message>
+  <wsdl:message name="ITrendingPublisher_getTagsDict_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getTagsDictResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrendingPublisher_getEntries_InputMessage">
+    <wsdl:part name="parameters" element="tns:getEntries" />
+  </wsdl:message>
+  <wsdl:message name="ITrendingPublisher_getEntries_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getEntriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrendingPublisher_ScanHappened_InputMessage">
+    <wsdl:part name="parameters" element="tns:ScanHappened" />
+  </wsdl:message>
+  <wsdl:message name="ITrendingPublisher_ScanHappened_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ScanHappenedResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrendingPublisher_DictChanged_InputMessage">
+    <wsdl:part name="parameters" element="tns:DictChanged" />
+  </wsdl:message>
+  <wsdl:message name="ITrendingPublisher_DictChanged_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DictChangedResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrendingSubscriber_TrendingSubscriberInit_InputMessage">
+    <wsdl:part name="parameters" element="tns:TrendingSubscriberInit" />
+  </wsdl:message>
+  <wsdl:message name="ITrendingSubscriber_TrendingSubscriberInit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TrendingSubscriberInitResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrendingSubscriber_OnScan_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnScan" />
+  </wsdl:message>
+  <wsdl:message name="ITrendingSubscriber_OnTagsDictChanged_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnTagsDictChanged" />
+  </wsdl:message>
+  <wsdl:portType name="IRealTimeUnit">
+    <wsdl:operation name="initialize">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRealTimeUnit/initialize" message="tns:IRealTimeUnit_initialize_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRealTimeUnit/initializeResponse" message="tns:IRealTimeUnit_initialize_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="writeValue">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRealTimeUnit/writeValue" message="tns:IRealTimeUnit_writeValue_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRealTimeUnit/writeValueResponse" message="tns:IRealTimeUnit_writeValue_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="deinitialize">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRealTimeUnit/deinitialize" message="tns:IRealTimeUnit_deinitialize_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRealTimeUnit/deinitializeResponse" message="tns:IRealTimeUnit_deinitialize_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IDisplay">
+    <wsdl:operation name="readDisplayValues">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDisplay/readDisplayValues" message="tns:IDisplay_readDisplayValues_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDisplay/readDisplayValuesResponse" message="tns:IDisplay_readDisplayValues_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IDatabaseManager">
+    <wsdl:operation name="addNewSimulationDriverUnit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDatabaseManager/addNewSimulationDriverUnit" message="tns:IDatabaseManager_addNewSimulationDriverUnit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDatabaseManager/addNewSimulationDriverUnitResponse" message="tns:IDatabaseManager_addNewSimulationDriverUnit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="removeSimulationDriverUnit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDatabaseManager/removeSimulationDriverUnit" message="tns:IDatabaseManager_removeSimulationDriverUnit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDatabaseManager/removeSimulationDriverUnitResponse" message="tns:IDatabaseManager_removeSimulationDriverUnit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="addTag">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDatabaseManager/addTag" message="tns:IDatabaseManager_addTag_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDatabaseManager/addTagResponse" message="tns:IDatabaseManager_addTag_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="removeTag">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDatabaseManager/removeTag" message="tns:IDatabaseManager_removeTag_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDatabaseManager/removeTagResponse" message="tns:IDatabaseManager_removeTag_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="changeTag">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDatabaseManager/changeTag" message="tns:IDatabaseManager_changeTag_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDatabaseManager/changeTagResponse" message="tns:IDatabaseManager_changeTag_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getTags">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDatabaseManager/getTags" message="tns:IDatabaseManager_getTags_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDatabaseManager/getTagsResponse" message="tns:IDatabaseManager_getTags_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getUnits">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDatabaseManager/getUnits" message="tns:IDatabaseManager_getUnits_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDatabaseManager/getUnitsResponse" message="tns:IDatabaseManager_getUnits_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IAlarmer">
+    <wsdl:operation name="AlarmerInit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlarmer/AlarmerInit" message="tns:IAlarmer_AlarmerInit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlarmer/AlarmerInitResponse" message="tns:IAlarmer_AlarmerInit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OnAlarm">
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlarmer/OnAlarm" message="tns:IAlarmer_OnAlarm_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ITrendingPublisher">
+    <wsdl:operation name="sendOutputSignal">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrendingPublisher/sendOutputSignal" message="tns:ITrendingPublisher_sendOutputSignal_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrendingPublisher/sendOutputSignalResponse" message="tns:ITrendingPublisher_sendOutputSignal_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="sendManualInputSignal">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrendingPublisher/sendManualInputSignal" message="tns:ITrendingPublisher_sendManualInputSignal_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrendingPublisher/sendManualInputSignalResponse" message="tns:ITrendingPublisher_sendManualInputSignal_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getTagsDict">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrendingPublisher/getTagsDict" message="tns:ITrendingPublisher_getTagsDict_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrendingPublisher/getTagsDictResponse" message="tns:ITrendingPublisher_getTagsDict_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getEntries">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrendingPublisher/getEntries" message="tns:ITrendingPublisher_getEntries_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrendingPublisher/getEntriesResponse" message="tns:ITrendingPublisher_getEntries_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ScanHappened">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrendingPublisher/ScanHappened" message="tns:ITrendingPublisher_ScanHappened_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrendingPublisher/ScanHappenedResponse" message="tns:ITrendingPublisher_ScanHappened_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DictChanged">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrendingPublisher/DictChanged" message="tns:ITrendingPublisher_DictChanged_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrendingPublisher/DictChangedResponse" message="tns:ITrendingPublisher_DictChanged_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ITrendingSubscriber">
+    <wsdl:operation name="TrendingSubscriberInit">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITrendingSubscriber/TrendingSubscriberInit" message="tns:ITrendingSubscriber_TrendingSubscriberInit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrendingSubscriber/TrendingSubscriberInitResponse" message="tns:ITrendingSubscriber_TrendingSubscriberInit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OnScan">
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrendingSubscriber/OnScan" message="tns:ITrendingSubscriber_OnScan_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OnTagsDictChanged">
+      <wsdl:output wsaw:Action="http://tempuri.org/ITrendingSubscriber/OnTagsDictChanged" message="tns:ITrendingSubscriber_OnTagsDictChanged_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IRealTimeUnit" type="tns:IRealTimeUnit">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="initialize">
+      <soap:operation soapAction="http://tempuri.org/IRealTimeUnit/initialize" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="writeValue">
+      <soap:operation soapAction="http://tempuri.org/IRealTimeUnit/writeValue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deinitialize">
+      <soap:operation soapAction="http://tempuri.org/IRealTimeUnit/deinitialize" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_IDisplay" type="tns:IDisplay">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="readDisplayValues">
+      <soap:operation soapAction="http://tempuri.org/IDisplay/readDisplayValues" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_IDatabaseManager" type="tns:IDatabaseManager">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="addNewSimulationDriverUnit">
+      <soap:operation soapAction="http://tempuri.org/IDatabaseManager/addNewSimulationDriverUnit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeSimulationDriverUnit">
+      <soap:operation soapAction="http://tempuri.org/IDatabaseManager/removeSimulationDriverUnit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addTag">
+      <soap:operation soapAction="http://tempuri.org/IDatabaseManager/addTag" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeTag">
+      <soap:operation soapAction="http://tempuri.org/IDatabaseManager/removeTag" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changeTag">
+      <soap:operation soapAction="http://tempuri.org/IDatabaseManager/changeTag" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTags">
+      <soap:operation soapAction="http://tempuri.org/IDatabaseManager/getTags" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUnits">
+      <soap:operation soapAction="http://tempuri.org/IDatabaseManager/getUnits" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSDualHttpBinding_IAlarmer" type="tns:IAlarmer">
+    <wsp:PolicyReference URI="#WSDualHttpBinding_IAlarmer_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AlarmerInit">
+      <soap12:operation soapAction="http://tempuri.org/IAlarmer/AlarmerInit" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IAlarmer_AlarmerInit_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IAlarmer_AlarmerInit_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnAlarm">
+      <soap12:operation soapAction="http://tempuri.org/IAlarmer/OnAlarm" style="document" />
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IAlarmer_OnAlarm_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_ITrendingPublisher" type="tns:ITrendingPublisher">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="sendOutputSignal">
+      <soap:operation soapAction="http://tempuri.org/ITrendingPublisher/sendOutputSignal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendManualInputSignal">
+      <soap:operation soapAction="http://tempuri.org/ITrendingPublisher/sendManualInputSignal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTagsDict">
+      <soap:operation soapAction="http://tempuri.org/ITrendingPublisher/getTagsDict" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEntries">
+      <soap:operation soapAction="http://tempuri.org/ITrendingPublisher/getEntries" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScanHappened">
+      <soap:operation soapAction="http://tempuri.org/ITrendingPublisher/ScanHappened" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DictChanged">
+      <soap:operation soapAction="http://tempuri.org/ITrendingPublisher/DictChanged" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSDualHttpBinding_ITrendingSubscriber" type="tns:ITrendingSubscriber">
+    <wsp:PolicyReference URI="#WSDualHttpBinding_ITrendingSubscriber_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TrendingSubscriberInit">
+      <soap12:operation soapAction="http://tempuri.org/ITrendingSubscriber/TrendingSubscriberInit" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_ITrendingSubscriber_TrendingSubscriberInit_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_ITrendingSubscriber_TrendingSubscriberInit_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnScan">
+      <soap12:operation soapAction="http://tempuri.org/ITrendingSubscriber/OnScan" style="document" />
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_ITrendingSubscriber_OnScan_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnTagsDictChanged">
+      <soap12:operation soapAction="http://tempuri.org/ITrendingSubscriber/OnTagsDictChanged" style="document" />
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_ITrendingSubscriber_OnTagsDictChanged_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ScadaService">
+    <wsdl:port name="BasicHttpBinding_IRealTimeUnit" binding="tns:BasicHttpBinding_IRealTimeUnit">
+      <soap:address location="http://localhost:60577/ScadaService.svc/RealTimeUnit/" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_IDisplay" binding="tns:BasicHttpBinding_IDisplay">
+      <soap:address location="http://localhost:60577/ScadaService.svc/TestDisplay/" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_IDatabaseManager" binding="tns:BasicHttpBinding_IDatabaseManager">
+      <soap:address location="http://localhost:60577/ScadaService.svc/DatabaseManager/" />
+    </wsdl:port>
+    <wsdl:port name="WSDualHttpBinding_IAlarmer" binding="tns:WSDualHttpBinding_IAlarmer">
+      <soap12:address location="http://localhost:60577/ScadaService.svc/Alarmer/" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://localhost:60577/ScadaService.svc/Alarmer/</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Upn>DESKTOP-56RP4AP\Nenad</Upn>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_ITrendingPublisher" binding="tns:BasicHttpBinding_ITrendingPublisher">
+      <soap:address location="http://localhost:60577/ScadaService.svc/TrendingPub/" />
+    </wsdl:port>
+    <wsdl:port name="WSDualHttpBinding_ITrendingSubscriber" binding="tns:WSDualHttpBinding_ITrendingSubscriber">
+      <soap12:address location="http://localhost:60577/ScadaService.svc/TrendingSub/" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://localhost:60577/ScadaService.svc/TrendingSub/</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Upn>DESKTOP-56RP4AP\Nenad</Upn>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ScadaModels" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ScadaModels" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:60577/ScadaService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:simpleType name="functionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Sin" />
+      <xs:enumeration value="Cos" />
+      <xs:enumeration value="Ramp" />
+      <xs:enumeration value="Triangle" />
+      <xs:enumeration value="Rectangle" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="functionType" nillable="true" type="tns:functionType" />
+  <xs:complexType name="Tag">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="driver" type="tns:Driver" />
+      <xs:element minOccurs="0" name="ioAddress" type="xs:int" />
+      <xs:element minOccurs="0" name="tagId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Tag" nillable="true" type="tns:Tag" />
+  <xs:simpleType name="Driver">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SimulationDriver" />
+      <xs:enumeration value="RealTimeDriver" />
+      <xs:enumeration value="OutputDriver" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Driver" nillable="true" type="tns:Driver" />
+  <xs:complexType name="DITag">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Tag">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="alarm" nillable="true" type="tns:Alarm" />
+          <xs:element minOccurs="0" name="auto" type="xs:boolean" />
+          <xs:element minOccurs="0" name="on" type="xs:boolean" />
+          <xs:element minOccurs="0" name="scanTime" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DITag" nillable="true" type="tns:DITag" />
+  <xs:complexType name="Alarm">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ceiling" type="xs:int" />
+      <xs:element minOccurs="0" name="floor" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Alarm" nillable="true" type="tns:Alarm" />
+  <xs:complexType name="DOTag">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Tag">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="initialValue" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DOTag" nillable="true" type="tns:DOTag" />
+  <xs:complexType name="AITag">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Tag">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="alarm" nillable="true" type="tns:Alarm" />
+          <xs:element minOccurs="0" name="auto" type="xs:boolean" />
+          <xs:element minOccurs="0" name="high" type="xs:int" />
+          <xs:element minOccurs="0" name="low" type="xs:int" />
+          <xs:element minOccurs="0" name="on" type="xs:boolean" />
+          <xs:element minOccurs="0" name="scanTime" type="xs:int" />
+          <xs:element minOccurs="0" name="units" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AITag" nillable="true" type="tns:AITag" />
+  <xs:complexType name="AOTag">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Tag">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="high" type="xs:int" />
+          <xs:element minOccurs="0" name="initialValue" type="xs:int" />
+          <xs:element minOccurs="0" name="low" type="xs:int" />
+          <xs:element minOccurs="0" name="units" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AOTag" nillable="true" type="tns:AOTag" />
+  <xs:simpleType name="TagAttribute">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="tagId" />
+      <xs:enumeration value="description" />
+      <xs:enumeration value="driver" />
+      <xs:enumeration value="ioAddress" />
+      <xs:enumeration value="scanTime" />
+      <xs:enumeration value="alarm" />
+      <xs:enumeration value="on" />
+      <xs:enumeration value="auto" />
+      <xs:enumeration value="initialValue" />
+      <xs:enumeration value="low" />
+      <xs:enumeration value="high" />
+      <xs:enumeration value="units" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="TagAttribute" nillable="true" type="tns:TagAttribute" />
+  <xs:complexType name="SimulationUnit">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="address" type="xs:int" />
+      <xs:element minOccurs="0" name="fType" type="tns:functionType" />
+      <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SimulationUnit" nillable="true" type="tns:SimulationUnit" />
+  <xs:complexType name="ArrayOfDBEntry">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DBEntry" nillable="true" type="tns:DBEntry" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDBEntry" nillable="true" type="tns:ArrayOfDBEntry" />
+  <xs:complexType name="DBEntry">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tagId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="timeStamp" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="value" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DBEntry" nillable="true" type="tns:DBEntry" />
+</xs:schema>

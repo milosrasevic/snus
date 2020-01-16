@@ -1,0 +1,7 @@
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\AlarmDisplay\bin\Debug\AlarmDisplay.exe.config
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\AlarmDisplay\bin\Debug\AlarmDisplay.exe
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\AlarmDisplay\bin\Debug\AlarmDisplay.pdb
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\AlarmDisplay\obj\Debug\AlarmDisplay.csprojAssemblyReference.cache
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\AlarmDisplay\obj\Debug\AlarmDisplay.csproj.CoreCompileInputs.cache
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\AlarmDisplay\obj\Debug\AlarmDisplay.exe
+C:\Fakultet\5. semestar\SNUS\Projekat\SCADA\AlarmDisplay\obj\Debug\AlarmDisplay.pdb

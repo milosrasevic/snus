@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f3c232db-86d3-4fc8-bbf5-889caff12f62" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:60577/ScadaService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ScadaService.xsd" MetadataType="Schema" ID="054a7575-7b35-4de2-84cc-d1453734c105" SourceId="1" SourceUrl="http://localhost:60577/ScadaService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ScadaService.wsdl" MetadataType="Wsdl" ID="7b261305-9f4d-42c5-8361-30255f6b1f57" SourceId="1" SourceUrl="http://localhost:60577/ScadaService.svc?wsdl" />
+    <MetadataFile FileName="ScadaService1.xsd" MetadataType="Schema" ID="42659582-de0e-442e-85a3-56ba1a6d89be" SourceId="1" SourceUrl="http://localhost:60577/ScadaService.svc?xsd=xsd3" />
+    <MetadataFile FileName="ScadaService2.xsd" MetadataType="Schema" ID="52a2a8da-abe9-4048-86d6-4e8c192a7eb3" SourceId="1" SourceUrl="http://localhost:60577/ScadaService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ScadaService.disco" MetadataType="Disco" ID="39479515-3be9-42b1-baa0-88a621205f0f" SourceId="1" SourceUrl="http://localhost:60577/ScadaService.svc?disco" />
+    <MetadataFile FileName="ScadaService3.xsd" MetadataType="Schema" ID="5250b1c1-0eb3-44b2-9488-da6b5ccfc2c6" SourceId="1" SourceUrl="http://localhost:60577/ScadaService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
